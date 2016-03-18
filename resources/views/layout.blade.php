@@ -14,7 +14,7 @@
     <![endif]-->
 </head>
 <body>
-<div class="container-fluid">
+<div class="container">
     @yield('content')
 </div>
 <script src="/js/jquery.min.js"></script>

@@ -21,7 +21,7 @@ class CreatePhoneInfosTable extends Migration
             $table->timestamps();
 
             $table->foreign('phone_id', 'phone_info_phone_fk')
-                ->refernces('id')->on('phones');
+                ->references('id')->on('phones');
         });
     }
 

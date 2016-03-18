@@ -26,10 +26,15 @@ class PhoneController extends Controller
 
     public function phone()
     {
-        $phone = Route::input('subdomain');
+        $phoneNumber = Route::input('subdomain');
+        /** @var Phone $phone */
+        if ($phone = Phone::query()->where('number', $phoneNumber)->first()) {
+            $phone->load('phoneInfos');
+        }
         return view('phone')->with(
             [
-                'phone' => $phone
+                'phoneNumber' => $phoneNumber,
+                'phone' => $phone,
             ]
         );
     }
