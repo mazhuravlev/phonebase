@@ -33,5 +33,7 @@
             </li>
         @endforeach
     </ul>
+    <div style="text-align: center;">
     {!!  $phones->render() !!}
+    </div>
 @endsection

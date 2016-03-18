@@ -15,6 +15,15 @@
 </head>
 <body>
 <div class="container">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{{ env('APP_URL') }}">
+                    Информация по номерам
+                </a>
+            </div>
+        </div>
+    </nav>
     @yield('content')
 </div>
 <script src="/js/jquery.min.js"></script>
