@@ -28,5 +28,6 @@
 </div>
 <script src="/js/jquery.min.js"></script>
 <script src="/js/material.min.js"></script>
+@include('metrika')
 </body>
 </html>
