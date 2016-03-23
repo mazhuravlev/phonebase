@@ -43,7 +43,10 @@
         <!-- Put this div tag to the place, where the Comments block will be -->
         <div id="vk_comments" style="width: 100%;"></div>
         <script type="text/javascript">
-            VK.Widgets.Comments("vk_comments", {limit: 10, attach: "*"}, "{{ $phone->number }}");
+            VK.Widgets.Comments("vk_comments", {
+                limit: 10,
+                attach: "*"
+            }, "@if($phone){{ $phone->number }}@else{{ $phoneNumber }}@endif");
         </script>
 
     <div class="bs-component">
