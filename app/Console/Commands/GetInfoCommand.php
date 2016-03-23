@@ -6,6 +6,7 @@ use App\Phone;
 use App\PhoneInfo;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
+use Illuminate\Database\QueryException;
 
 class GetInfoCommand extends Command
 {
@@ -41,20 +42,30 @@ class GetInfoCommand extends Command
     public function handle()
     {
         $data = file_get_contents(storage_path('input/' . $this->argument('file')));
-        if (!$sourceId = $this->option('source')) {
-            $this->error('Source is not set');
-            return;
-        }
         $json = json_decode($data);
         foreach ($json as $record) {
             $phone = Phone::firstOrCreate(['number' => intval($record->phone_id)]);
             $phoneInfo = new PhoneInfo();
             $phoneInfo->id_source = $record->id_source;
             $phoneInfo->data = ['description' => $record->description, 'price' => $record->price_string];
-            $phoneInfo->source_id = $sourceId;
+            if (property_exists($record, 'source_id')) {
+                $phoneInfo->source_id = $record->source_id;
+            } elseif ($this->option('source')) {
+                $phoneInfo->source_id = $this->option('source');
+            } else {
+                throw new \ErrorException('no source and source not set');
+            }
             $phoneInfo->setCreatedAt($record->created_at);
             $phoneInfo->phone()->associate($phone);
-            $phoneInfo->save();
+            try {
+                $phoneInfo->save();
+            } catch (QueryException $e) {
+                if ('23000' === $e->getCode() and 1062 === $e->errorInfo[1]) {
+                    continue;
+                } else {
+                    throw $e;
+                }
+            }
         }
     }
 }

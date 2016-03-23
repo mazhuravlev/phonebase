@@ -17,6 +17,7 @@
         }
     </style>
     @include('search')
+    <h2>В базе {{ $phones->total() }} номеров и {{$phoneInfosCount}} записей</h2>
     <h3>Выберите код оператора</h3>
     <ul class="codes-list no-style">
         @foreach($codes as $code)

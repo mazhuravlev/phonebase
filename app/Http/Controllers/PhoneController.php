@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Phone;
+use App\PhoneInfo;
 use App\System\Codes;
 use Illuminate\Http\Request;
 
@@ -20,6 +21,7 @@ class PhoneController extends Controller
             [
                 'codes' => Codes::$codes,
                 'phones' => Phone::query()->paginate(40),
+                'phoneInfosCount' => PhoneInfo::count(),
             ]
         );
     }
