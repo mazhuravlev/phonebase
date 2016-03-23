@@ -48,6 +48,7 @@ class SitemapGenerate extends Command
                 Sitemap::addTag(env('APP_URL') . '/' . $phone->number, $phone, 'daily', '0.8');
             }
             file_put_contents(public_path("sitemap/sitemap_$counter.xml"), Sitemap::xml());
+            Sitemap::clearTags();
             $counter++;
         });
         file_put_contents(public_path('sitemap/sitemap.xml'), Sitemap::xmlIndex());
