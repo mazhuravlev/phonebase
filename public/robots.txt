@@ -1,2 +1,3 @@
 User-agent: *
 Disallow:
+Sitemap: http://znaker.ru/sitemap/sitemap.xml

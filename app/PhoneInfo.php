@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class PhoneInfo extends Model
 {
 
+    protected $touches = [
+        'phone'
+    ];
+
     public function phone()
     {
         return $this->belongsTo(Phone::class);

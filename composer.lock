@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "10a2871f1b45c8dccd1e8dc8f6a2e48f",
-    "content-hash": "8b1485987e7c5949da82435d403e52e8",
+    "hash": "aac8ff5e0ee6977ff7b4d973dd5fea48",
+    "content-hash": "2d3279f58095efacac140c980e12e35d",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -1776,6 +1776,52 @@
                 "environment"
             ],
             "time": "2015-12-29 15:10:30"
+        },
+        {
+            "name": "watson/sitemap",
+            "version": "2.0.12",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dwightwatson/sitemap.git",
+                "reference": "d522f137ba4d6d732add67b6505f7b9e39b1b669"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dwightwatson/sitemap/zipball/d522f137ba4d6d732add67b6505f7b9e39b1b669",
+                "reference": "d522f137ba4d6d732add67b6505f7b9e39b1b669",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/http": "~5.0",
+                "illuminate/support": "~5.0",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "0.9.*",
+                "phpunit/phpunit": "4.3.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Watson\\": "src/Watson"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dwight Watson",
+                    "email": "dwightwatson@studious.com.au"
+                }
+            ],
+            "description": "Generate Google Sitemaps in Laravel 4/5",
+            "keywords": [
+                "laravel",
+                "sitemaps"
+            ],
+            "time": "2016-02-17 22:27:06"
         }
     ],
     "packages-dev": [
