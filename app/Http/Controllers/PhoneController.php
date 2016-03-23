@@ -24,9 +24,9 @@ class PhoneController extends Controller
         );
     }
 
-    public function phone()
+    public function phone($phoneNumber)
     {
-        $phoneNumber = Route::input('subdomain');
+        $phoneNumber = $phoneNumber ? $phoneNumber : Route::input('subdomain');
         /** @var Phone $phone */
         if ($phone = Phone::query()->where('number', $phoneNumber)->first()) {
             $phone->load('phoneInfos');
@@ -35,6 +35,8 @@ class PhoneController extends Controller
             [
                 'phoneNumber' => $phoneNumber,
                 'phone' => $phone,
+                'next' => Phone::find($phone->id + 1),
+                'prev' => Phone::find($phone->id - 1)
             ]
         );
     }

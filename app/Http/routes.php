@@ -9,6 +9,7 @@ Route::group(
     ],
     function () {
         Route::get('/', 'PhoneController@index');
+        Route::get('/{phoneNumber}', 'PhoneController@phone');
         Route::post('/search', 'PhoneController@search');
     }
 );

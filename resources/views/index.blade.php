@@ -29,7 +29,7 @@
     <ul class="no-style">
         @foreach($phones as $phone)
             <li>
-                <a href="http://{{ $phone->number }}.{{ env('APP_DOMAIN') }}">{{ $phone->number }}</a>
+                <a href="/{{ $phone->number }}">{{ $phone->number }}</a>
             </li>
         @endforeach
     </ul>
