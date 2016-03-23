@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Информация по номерам, объявления avito olx, кто звонил">
+    <meta name="google-site-verification" content="VV9bmebiiRr7gowflQmVPAl7AtC3WqIOazPBETWc-3k"/>
     <title>@yield('title')</title>
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/bootstrap-material-design.min.css" rel="stylesheet">
