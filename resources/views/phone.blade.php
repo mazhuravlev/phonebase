@@ -35,9 +35,11 @@
 
     <div class="bs-component">
         <ul class="pager">
-            <li class="previous @if(!$prev) disabled @endif"><a @if($prev) href="/{{ $prev->number }}" @endif>←
+            <li class="previous @if(!$prev) disabled @endif"><a
+                        @if($prev) href="{{ env('APP_URL') }}/{{ $prev->number }}" @endif>←
                     Предыдущий</a></li>
-            <li class="next @if(!$next) disabled @endif"><a @if($next) href="/{{ $next->number }}" @endif>Следующий
+            <li class="next @if(!$next) disabled @endif"><a
+                        @if($next) href="{{ env('APP_URL') }}//{{ $next->number }}" @endif>Следующий
                     →</a></li>
         </ul>
 @endsection
