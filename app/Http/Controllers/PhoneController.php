@@ -35,8 +35,8 @@ class PhoneController extends Controller
             [
                 'phoneNumber' => $phoneNumber,
                 'phone' => $phone,
-                'next' => Phone::find($phone->id + 1),
-                'prev' => Phone::find($phone->id - 1)
+                'next' => $phone ? Phone::find($phone->id + 1) : null,
+                'prev' => $phone ? Phone::find($phone->id - 1) : null,
             ]
         );
     }
