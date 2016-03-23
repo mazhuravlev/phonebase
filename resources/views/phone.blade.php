@@ -35,31 +35,55 @@
         <div class="alert alert-warning">
             Информации по этому номеру не найдено.
         </div>
-        @endif
+    @endif
 
-                <!-- Put this script tag to the <head> of your page -->
-        <script type="text/javascript" src="//vk.com/js/api/openapi.js?121"></script>
 
-        <script type="text/javascript">
-            VK.init({apiId: 5174401, onlyWidgets: true});
-        </script>
+    <div id="hypercomments_widget"></div>
+    <script type="text/javascript">
+        _hcwp = window._hcwp || [];
+        _hcwp.push({
+            widget: "Stream",
+            widget_id: 72674,
+            xid: "@if($phone){{ $phone->number }}@else{{ $phoneNumber }}@endif"
+        });
+        (function () {
+            if ("HC_LOAD_INIT" in window)return;
+            HC_LOAD_INIT = true;
+            var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+            var hcc = document.createElement("script");
+            hcc.type = "text/javascript";
+            hcc.async = true;
+            hcc.src = ("https:" == document.location.protocol ? "https" : "http") + "://w.hypercomments.com/widget/hc/72674/" + lang + "/widget.js";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hcc, s.nextSibling);
+        })();
+    </script>
 
-        <!-- Put this div tag to the place, where the Comments block will be -->
-        <div id="vk_comments" style="width: 100%;"></div>
-        <script type="text/javascript">
-            VK.Widgets.Comments("vk_comments", {
-                limit: 10,
-                attach: "*"
-            }, "@if($phone){{ $phone->number }}@else{{ $phoneNumber }}@endif");
-        </script>
+    <div class="bs-component">
+        <ul class="pager">
+            <li class="previous @if(!$prev) disabled @endif"><a
+                        @if($prev) href="{{ env('APP_URL') }}/{{ $prev->number }}" @endif>←
+                    Предыдущий</a></li>
+            <li class="next @if(!$next) disabled @endif"><a
+                        @if($next) href="{{ env('APP_URL') }}//{{ $next->number }}" @endif>Следующий
+                    →</a></li>
+        </ul>
+    </div>
 
-        <div class="bs-component">
-            <ul class="pager">
-                <li class="previous @if(!$prev) disabled @endif"><a
-                            @if($prev) href="{{ env('APP_URL') }}/{{ $prev->number }}" @endif>←
-                        Предыдущий</a></li>
-                <li class="next @if(!$next) disabled @endif"><a
-                            @if($next) href="{{ env('APP_URL') }}//{{ $next->number }}" @endif>Следующий
-                        →</a></li>
-            </ul>
+
+    <!-- Put this script tag to the <head> of your page -->
+    <script type="text/javascript" src="//vk.com/js/api/openapi.js?121"></script>
+    <script type="text/javascript">
+        VK.init({apiId: 5174401, onlyWidgets: true});
+    </script>
+    <!-- Put this div tag to the place, where the Comments block will be -->
+    <div id="vk_comments" style="width: 100%;"></div>
+    <script type="text/javascript">
+        VK.Widgets.Comments("vk_comments", {
+            limit: 10,
+            attach: "*"
+        }, "@if($phone){{ $phone->number }}@else{{ $phoneNumber }}@endif");
+    </script>
+
+
 @endsection

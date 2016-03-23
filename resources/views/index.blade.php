@@ -18,6 +18,29 @@
     </style>
     @include('search')
     <h2>В базе {{ $phones->total() }} номеров и {{$phoneInfosCount}} записей</h2>
+
+    <div id="hypercomments_widget"></div>
+    <script type="text/javascript">
+        _hcwp = window._hcwp || [];
+        _hcwp.push({
+            widget: "Stream",
+            widget_id: 72674,
+            xid: "index"
+        });
+        (function () {
+            if ("HC_LOAD_INIT" in window)return;
+            HC_LOAD_INIT = true;
+            var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+            var hcc = document.createElement("script");
+            hcc.type = "text/javascript";
+            hcc.async = true;
+            hcc.src = ("https:" == document.location.protocol ? "https" : "http") + "://w.hypercomments.com/widget/hc/72674/" + lang + "/widget.js";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hcc, s.nextSibling);
+        })();
+    </script>
+
+
     <h3>Выберите код оператора</h3>
     <ul class="codes-list no-style">
         @foreach($codes as $code)
