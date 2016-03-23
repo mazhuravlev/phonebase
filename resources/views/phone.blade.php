@@ -9,6 +9,10 @@
         <h4>
             <a href="http://{{ $phone->number }}.{{ env('APP_DOMAIN') }}">короткая ссылка на эту страницу</a>
         </h4>
+    @else
+        <h4>
+            <a href="http://{{ $phoneNumber }}.{{ env('APP_DOMAIN') }}">короткая ссылка на эту страницу</a>
+        </h4>
     @endif
     @if($phone and $phone->phoneInfos->count() > 0)
         @foreach($phone->phoneInfos as $phoneInfo)
@@ -31,9 +35,9 @@
         <div class="alert alert-warning">
             Информации по этому номеру не найдено.
         </div>
-    @endif
+        @endif
 
-            <!-- Put this script tag to the <head> of your page -->
+                <!-- Put this script tag to the <head> of your page -->
         <script type="text/javascript" src="//vk.com/js/api/openapi.js?121"></script>
 
         <script type="text/javascript">
@@ -49,13 +53,13 @@
             }, "@if($phone){{ $phone->number }}@else{{ $phoneNumber }}@endif");
         </script>
 
-    <div class="bs-component">
-        <ul class="pager">
-            <li class="previous @if(!$prev) disabled @endif"><a
-                        @if($prev) href="{{ env('APP_URL') }}/{{ $prev->number }}" @endif>←
-                    Предыдущий</a></li>
-            <li class="next @if(!$next) disabled @endif"><a
-                        @if($next) href="{{ env('APP_URL') }}//{{ $next->number }}" @endif>Следующий
-                    →</a></li>
-        </ul>
+        <div class="bs-component">
+            <ul class="pager">
+                <li class="previous @if(!$prev) disabled @endif"><a
+                            @if($prev) href="{{ env('APP_URL') }}/{{ $prev->number }}" @endif>←
+                        Предыдущий</a></li>
+                <li class="next @if(!$next) disabled @endif"><a
+                            @if($next) href="{{ env('APP_URL') }}//{{ $next->number }}" @endif>Следующий
+                        →</a></li>
+            </ul>
 @endsection
