@@ -43,7 +43,8 @@ class PhoneController extends Controller
 
     public function search(Request $request)
     {
-        return Redirect::away(env('APP_URL') . '/' . urlencode($request->get('phone')));
+        $phone = preg_replace('/\D/', '', $request->get('phone'));
+        return Redirect::away(env('APP_URL') . '/' . $phone);
     }
 
 }
