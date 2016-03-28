@@ -30,7 +30,9 @@
 </div>
 <script src="/js/jquery.min.js"></script>
 <script src="/js/material.min.js"></script>
-@include('metrika')
+@if(env('APP_ENV') !== 'local')
+    @include('metrika')
+@endif
 <div style="color: rgba(0,0,0,0.4); font-size: x-small">098e29b339e6485db77c733599e2005b</div>
 </body>
 </html>
