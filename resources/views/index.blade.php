@@ -15,6 +15,12 @@
         .codes-list li a {
             color: white;
         }
+
+        .more-info {
+            background-color: #5b7fa6;
+            color: white;
+            padding: 2px;
+        }
     </style>
     @include('search')
     <h2>В базе {{ $phones->total() }} номеров и {{$phoneInfosCount}} записей</h2>
@@ -65,12 +71,26 @@
 
     <ul class="no-style">
         @foreach($phones as $phone)
-            <li>
+            <li style="margin-bottom: 6px;">
                 <a href="/{{ $phone->number }}">{{ $phone->number }}</a>
+                {{-- */$phoneInfoCount = $phone->phoneInfos()->count();/* --}}
+                @if($phoneInfoCount)
+                    <span>
+                        @foreach($phone->phoneInfos->first()->data as $key => $value)
+                            @if($value)
+                                <span class="badge">{{ trans('data.'.$key) }}</span>
+                                {{ mb_strimwidth($value, 0, 50, '…') }}
+                            @endif
+                        @endforeach
+                    </span>
+                    @if($phoneInfoCount > 1)
+                        <a class="more-info" href="/{{ $phone->number }}">+{{$phoneInfoCount - 1}} инф</a>
+                    @endif
+                @endif
             </li>
         @endforeach
     </ul>
     <div style="text-align: center;">
-    {!!  $phones->render() !!}
+        {!!  $phones->render() !!}
     </div>
 @endsection
