@@ -1,4 +1,19 @@
 @extends('layout')
+@section('description')
+    <meta name="Description"
+          content="Информация по номеру телефона {{ $phone->number }}
+          @if($phone and $phone->phoneInfos()->count() > 0)
+          {{ $phone->phoneInfos()->count() }} записи,
+                @foreach($phone->phoneInfos()->first()->data as $key => $value)
+          @if($value)
+          {{ trans('data.'.$key) }}: {{ $value }}
+          @endif
+          @endforeach
+          @else
+                  нет информации
+          @endif">
+    <meta name="Keywords" content="{{ $phone->number }}, номер, телефон, кто звонил, olx, avito">
+@endsection
 @section('title')
     {{ $phoneNumber }} - информация по номеру телефона
 @endsection
@@ -14,7 +29,7 @@
             <a href="http://{{ $phoneNumber }}.{{ env('APP_DOMAIN') }}">короткая ссылка на эту страницу</a>
         </h4>
     @endif
-    @if($phone and $phone->phoneInfos->count() > 0)
+    @if($phone and $phone->phoneInfos()->count() > 0)
         @foreach($phone->phoneInfos as $phoneInfo)
             <div class="panel panel-default">
                 <div class="panel-body">
