@@ -12,10 +12,11 @@
           @else
                   нет информации
           @endif">
-    <meta name="Keywords" content="{{ $phone->number }}, номер, телефон, кто звонил, olx, avito">
+    <meta name="Keywords"
+          content="{{ $phone->number }}, {{ implode(', ', $phone->forms()) }}, номер, телефон, объявления, кто звонил, olx, avito">
 @endsection
 @section('title')
-    {{ $phoneNumber }} - информация по номеру телефона
+    {{ $phone->number }} - телефон: {{ implode(', ', $phone->forms()) }}. Информация и объявления по номеру телефона.
 @endsection
 @section('content')
     @include('search')
