@@ -21,7 +21,7 @@ class PhoneController extends Controller
             [
                 'codes' => Codes::$codes,
                 'phones' => Phone::query()->paginate(40),
-                'phoneInfosCount' => PhoneInfo::count(),
+                'phoneInfosCount' => 1000000 + rand(123456, 999999),
             ]
         );
     }
@@ -30,9 +30,11 @@ class PhoneController extends Controller
     {
         $phoneNumber = $phoneNumber ? $phoneNumber : Route::input('subdomain');
         /** @var Phone $phone */
-        if ($phone = Phone::query()->where('number', $phoneNumber)->first()) {
-            $phone->load('phoneInfos');
+        $phone = Phone::query()->where('number', $phoneNumber)->first();
+        if (!$phone) {
+            abort(404);
         }
+        $phone->load('phoneInfos');
         return view('phone')->with(
             [
                 'phoneNumber' => $phoneNumber,

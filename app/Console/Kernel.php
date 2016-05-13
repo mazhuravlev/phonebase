@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
         Commands\GetInfoCommand::class,
         Commands\SitemapGenerate::class,
         Commands\TouchPhones::class,
+        Commands\LoadAvito::class,
     ];
 
     /**

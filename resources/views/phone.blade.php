@@ -4,11 +4,16 @@
           content="Информация по номеру телефона {{ $phone->number }}
           @if($phone and $phone->phoneInfos()->count() > 0)
           {{ $phone->phoneInfos()->count() }} записи,
-                @foreach($phone->phoneInfos()->first()->data as $key => $value)
+                @if(is_array($phone->phoneInfos()->first()->data) or $phone->phoneInfos()->first()->data instanceof Traversable)
+          @foreach($phone->phoneInfos()->first()->data as $key => $value)
           @if($value)
           {{ trans('data.'.$key) }}: {{ $value }}
           @endif
           @endforeach
+          @else
+          {{var_dump($phone->phoneInfos()->first()->data)}}
+          @endif
+
           @else
                   нет информации
           @endif">
@@ -20,7 +25,9 @@
 @endsection
 @section('content')
     @include('search')
-    <h1>Номер {{ $phoneNumber }}</h1>
+    <h1>Номер {{ $phoneNumber }}
+        <small>({{ implode(', ', $phone->forms()) }})</small>
+    </h1>
     @if($phone)
         <h4>
             <a href="http://{{ $phone->number }}.{{ env('APP_DOMAIN') }}">короткая ссылка на эту страницу</a>
@@ -36,14 +43,18 @@
                 <div class="panel-body">
                     <span class="label">{{ $phoneInfo->source_id }}
                         : {{ $phoneInfo->created_at->format('d.m.Y') }}</span>
-                    @foreach($phoneInfo->data as $key => $value)
-                        @if($value)
-                            <div>
-                                <span class="badge">{{ trans('data.'.$key) }}</span>
-                                {{ $value }}
-                            </div>
-                        @endif
-                    @endforeach
+                    @if(is_array($phoneInfo->data) or $phoneInfo->data instanceof Traversable)
+                        @foreach($phoneInfo->data as $key => $value)
+                            @if($value)
+                                <div>
+                                    <span class="badge">{{ trans('data.'.$key) }}</span>
+                                    {{ $value }}
+                                </div>
+                            @endif
+                        @endforeach
+                    @else
+                        {{ var_dump($phoneInfo->data) }}
+                    @endif
                 </div>
             </div>
         @endforeach

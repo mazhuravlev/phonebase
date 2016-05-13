@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class PhoneInfo extends Model
 {
 
+    public $fillable = [
+        'data', 'source_id', 'id_source'
+    ];
     protected $touches = [
         'phone'
     ];

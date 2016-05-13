@@ -42,12 +42,13 @@ class SitemapGenerate extends Command
     public function handle()
     {
         $counter = 1;
-        $phones = Phone::chunk(10000, function (Collection $phones) use (&$counter) {
-            Sitemap::addSitemap(env('APP_URL') . "/sitemap/sitemap_$counter.xml");
+        $phones = Phone::chunk(50000, function (Collection $phones) use (&$counter) {
+            Sitemap::addSitemap(env('APP_URL') . "/sitemap/sitemap_$counter.xml.gz");
             foreach ($phones as $phone) {
                 Sitemap::addTag(env('APP_URL') . '/' . $phone->number, $phone, 'daily', '0.8');
             }
-            file_put_contents(public_path("sitemap/sitemap_$counter.xml"), Sitemap::xml());
+            file_put_contents(public_path("sitemap/sitemap_$counter.xml.gz"), gzencode(Sitemap::xml(), 5));
+            echo "Generated $counter sitemap" . PHP_EOL;
             Sitemap::clearTags();
             $counter++;
         });
