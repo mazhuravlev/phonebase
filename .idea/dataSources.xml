@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="3593892801">
+    <data-source source="LOCAL" name="PostgreSQL - avito@localhost" uuid="333090f5-d07d-4ec2-94c5-89b50ebfd3b4">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/avito</jdbc-url>
+    </data-source>
+  </component>
+</project>

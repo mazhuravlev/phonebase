@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="0310145f-344d-41e4-95fe-93d8b894a77f" name="ayafoto" url="http://ayafoto.ru">
+        <fileTransfer host="ayafoto.ru" port="22" accessType="SFTP" password="dfebdfd8dfc8df9adf9adfd0df98df9adf98df9b" username="mazhuravlev">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
