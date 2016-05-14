@@ -74,6 +74,7 @@
         @foreach($phones as $phone)
             <li style="margin-bottom: 6px;">
                 <a href="/{{ $phone->number }}">{{ $phone->number }}</a>
+                <small>{{ implode(', ', $phone->forms()) }}</small>
                 {{-- */$phoneInfoCount = $phone->phoneInfos()->count();/* --}}
                 @if($phoneInfoCount)
                     <span>
