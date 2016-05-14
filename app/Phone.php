@@ -17,13 +17,14 @@ class Phone extends Model
 
     public function forms()
     {
-        $forms = [];
         if (preg_match('/^7/', $this->number)) {
             $p = substr($this->number, 1);
-            array_push($forms, $p);
-            array_push($forms, '8' . $p);
+            return [$p, '8' . $p];
+        } elseif (preg_match('/^380/', $this->number)) {
+            return [substr($this->number, 2)];
+        } else {
+            return [];
         }
-        return $forms;
     }
 
 }
