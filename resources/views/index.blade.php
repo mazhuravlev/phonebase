@@ -23,6 +23,7 @@
         }
     </style>
     @include('search')
+    @include('banners/banner1')
     <h2>В базе {{ $phones->total() }} номеров и {{$phoneInfosCount}} записей</h2>
 
     <div id="hypercomments_widget"></div>

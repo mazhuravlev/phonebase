@@ -25,6 +25,7 @@
 @endsection
 @section('content')
     @include('search')
+    @include('banners/banner1')
     <h1>Номер {{ $phoneNumber }}
         <small>({{ implode(', ', $phone->forms()) }})</small>
     </h1>
