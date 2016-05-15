@@ -20,7 +20,7 @@ class PhoneController extends Controller
         return view('index')->with(
             [
                 'codes' => Codes::$codes,
-                'phones' => Phone::query()->paginate(40),
+                'phones' => Phone::query()->paginate(env('PHONES_BY_PAGE')),
                 'phoneInfosCount' => 1000000 + rand(123456, 999999),
             ]
         );

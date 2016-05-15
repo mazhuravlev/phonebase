@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         Commands\GetInfoCommand::class,
         Commands\SitemapGenerate::class,
+        Commands\SitemapPages::class,
         Commands\TouchPhones::class,
         Commands\LoadAvito::class,
     ];
