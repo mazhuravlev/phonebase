@@ -38,6 +38,9 @@
             <a href="http://{{ $phoneNumber }}.{{ env('APP_DOMAIN') }}">короткая ссылка на эту страницу</a>
         </h4>
     @endif
+
+    @include('banners/adapt')
+
     @if($phone and $phone->phoneInfos()->count() > 0)
         @foreach($phone->phoneInfos as $phoneInfo)
             <div class="panel panel-default">
