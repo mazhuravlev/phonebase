@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Phone;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Database\PostgresConnection;
 use Illuminate\Database\Query\Builder;
@@ -16,7 +17,7 @@ class LoadAvito extends Command
      *
      * @var string
      */
-    protected $signature = 'load:avito';
+    protected $signature = 'load:avito {--count} {--after-time=0}';
 
     /**
      * The console command description.
@@ -44,7 +45,16 @@ class LoadAvito extends Command
     {
         /** @var PostgresConnection $db */
         $db = DB::connection('pgsql');
-        $item = $db->query()->from('Items')->chunk(100, function ($items) {
+        $query = $db->query()->from('Sitemap')
+            ->where('StatusId', 1)
+            ->where('AddDate', '>', Carbon::createFromTimestamp($this->option('after-time')));
+        if ($this->option('count')) {
+            $this->info('Count is ' . $query->count());
+            return;
+        }
+        $query->leftJoin('Items', 'Sitemap.Id', '=', 'Items.Id')
+            ->select('Items.*')
+            ->chunk(100, function ($items) {
             foreach ($items as $item) {
                 if ($data = json_decode($item->Data)) {
                     if (!property_exists($data, 'phone')) {
