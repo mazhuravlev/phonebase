@@ -8,6 +8,7 @@ Route::group(
         'domain' => env('APP_DOMAIN')
     ],
     function () {
+        Route::get('/phone/{phone}/info/{phoneInfo}', 'PhoneController@info');
         Route::get('/', 'PhoneController@index');
         Route::get('/{phoneNumber}', 'PhoneController@phone');
         Route::post('/search', 'PhoneController@search');

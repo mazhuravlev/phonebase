@@ -25,7 +25,6 @@
 @endsection
 @section('content')
     @include('search')
-    @include('banners/banner1')
     <h1>Номер {{ $phoneNumber }}
         <small>({{ implode(', ', $phone->forms()) }})</small>
     </h1>
@@ -39,21 +38,39 @@
         </h4>
     @endif
 
-    @include('banners/adapt')
+    @include('banners/long')
 
     @if($phone and $phone->phoneInfos()->count() > 0)
         @foreach($phone->phoneInfos as $phoneInfo)
-            <div class="panel panel-default">
+            <div class="panel panel-default" style="font-size: 16px;">
+                <style scoped>
+                    .label, .badge {
+                        font-size: 100%;
+                    }
+
+                    .label {
+                        margin-bottom: 6px;
+                    }
+                </style>
                 <div class="panel-body">
-                    <span class="label">{{ $phoneInfo->source_id }}
+                    <span class="label">Добавлено на {{ $phoneInfo->source_id }}
                         : {{ $phoneInfo->created_at->format('d.m.Y') }}</span>
                     @if(is_array($phoneInfo->data) or $phoneInfo->data instanceof Traversable)
                         @foreach($phoneInfo->data as $key => $value)
                             @if($value)
-                                <div>
-                                    <span class="badge">{{ trans('data.'.$key) }}</span>
-                                    {{ $value }}
-                                </div>
+                                @if('description' === $key)
+                                    <div>
+                                        <span class="badge">{{ trans('data.'.$key) }}</span>
+                                        {{ mb_strimwidth($value, 0, 100, '...', 'UTF-8') }} <strong>
+                                            <a href="/phone/{{$phone->id}}/info/{{$phoneInfo->id}}">подробнее</a>
+                                        </strong>
+                                    </div>
+                                @else
+                                    <div>
+                                        <span class="badge">{{ trans('data.'.$key) }}</span>
+                                        {{ $value }}
+                                    </div>
+                                @endif
                             @endif
                         @endforeach
                     @else
@@ -68,6 +85,7 @@
         </div>
     @endif
 
+    @include('banners/big1')
 
     <div id="hypercomments_widget"></div>
     <script type="text/javascript">
@@ -89,6 +107,8 @@
             s.parentNode.insertBefore(hcc, s.nextSibling);
         })();
     </script>
+
+    @include('banners/adapt')
 
     <div class="bs-component">
         <ul class="pager">

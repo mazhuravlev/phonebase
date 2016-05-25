@@ -26,6 +26,16 @@ class PhoneController extends Controller
         );
     }
 
+    public function info(Phone $phone, PhoneInfo $phoneInfo)
+    {
+        return view('info')->with(
+            [
+                'phone' => $phone,
+                'phoneInfo' => $phoneInfo,
+            ]
+        );
+    }
+
     public function phone($phoneNumber)
     {
         $phoneNumber = $phoneNumber ? $phoneNumber : Route::input('subdomain');
