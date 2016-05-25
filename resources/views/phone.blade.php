@@ -86,6 +86,7 @@
     @endif
 
     @include('banners/big1')
+    @include('banners/adapt')
 
     <div id="hypercomments_widget"></div>
     <script type="text/javascript">
@@ -107,8 +108,6 @@
             s.parentNode.insertBefore(hcc, s.nextSibling);
         })();
     </script>
-
-    @include('banners/adapt')
 
     <div class="bs-component">
         <ul class="pager">

@@ -44,10 +44,19 @@
             @else
                 {{ var_dump($phoneInfo->data) }}
             @endif
+            @if(\App\System\Source::hasUrl($phoneInfo->source_id))
+                <strong>
+                    <a target="_blank"
+                       href="{{ \App\System\Source::url($phoneInfo->source_id, $phoneInfo->id_source) }}">Открыть
+                        на {{$phoneInfo->source_id}}</a>
+                    (может быть недоступно)
+                </strong>
+            @endif
         </div>
     </div>
 
     @include('banners/big1')
+    @include('banners/adapt')
 
     <div id="hypercomments_widget"></div>
     <script type="text/javascript">
@@ -69,8 +78,6 @@
             s.parentNode.insertBefore(hcc, s.nextSibling);
         })();
     </script>
-
-    @include('banners/adapt')
 
     <div class="bs-component">
         <ul class="pager">
