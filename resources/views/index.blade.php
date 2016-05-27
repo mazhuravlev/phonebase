@@ -24,7 +24,7 @@
     </style>
     @include('search')
     @include('banners/banner1')
-    <h2>В базе {{ $phones->total() }} номеров и {{$phoneInfosCount}} записей</h2>
+    <h1>В базе {{ $phones->total() }} номеров и {{$phoneInfosCount}} записей</h1>
 
     <div id="hypercomments_widget"></div>
     <script type="text/javascript">
@@ -46,16 +46,6 @@
             s.parentNode.insertBefore(hcc, s.nextSibling);
         })();
     </script>
-
-
-    <h3>Выберите код оператора</h3>
-    <ul class="codes-list no-style">
-        @foreach($codes as $code)
-            <li class="badge">
-                <a href="./?code={{$code}}">{{ $code }}</a>
-            </li>
-        @endforeach
-    </ul>
 
     <!-- Put this script tag to the <head> of your page -->
     <script type="text/javascript" src="//vk.com/js/api/openapi.js?121"></script>
