@@ -52,6 +52,7 @@ class SitemapGenerate extends Command
             Sitemap::clearTags();
             $counter++;
         });
+        Sitemap::addSitemap(env('APP_URL') . "/sitemap/sitemap_pages.xml.gz");
         file_put_contents(public_path('sitemap/sitemap.xml'), Sitemap::xmlIndex());
     }
 }

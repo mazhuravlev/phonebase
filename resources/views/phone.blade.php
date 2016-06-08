@@ -38,7 +38,12 @@
         </h4>
     @endif
 
-    @include('banners/long')
+    <div class="panel panel-default">
+        <div class="panel-heading">Реклама</div>
+        <div class="panel-body">
+            @include('banners/adapt')
+        </div>
+    </div>
 
     @if($phone and $phone->phoneInfos()->count() > 0)
         @foreach($phone->phoneInfos as $phoneInfo)
@@ -62,7 +67,8 @@
                                     <div>
                                         <span class="badge">{{ trans('data.'.$key) }}</span>
                                         {{ mb_strimwidth($value, 0, 100, '...', 'UTF-8') }} <strong>
-                                            <a href="/phone/{{$phone->id}}/info/{{$phoneInfo->id}}">подробнее</a>
+                                            <a class="btn btn-danger btn-raised"
+                                               href="/phone/{{$phone->id}}/info/{{$phoneInfo->id}}">подробнее</a>
                                         </strong>
                                     </div>
                                 @else
@@ -84,9 +90,19 @@
             Информации по этому номеру не найдено.
         </div>
     @endif
+    <div class="panel panel-default">
+        <div class="panel-heading">Реклама</div>
+        <div class="panel-body">
+            @include('banners/adapt')
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">Реклама</div>
+        <div class="panel-body">
+            @include('banners/adapt')
+        </div>
+    </div>
 
-    @include('banners/big1')
-    @include('banners/adapt')
 
     <div id="hypercomments_widget"></div>
     <script type="text/javascript">
