@@ -65,15 +65,19 @@
             <li style="margin-bottom: 6px;">
                 <a href="/{{ $phone->number }}">{{ $phone->number }}</a>
                 <small>{{ implode(', ', $phone->forms()) }}</small>
-                {{-- */$phoneInfoCount = $phone->phoneInfos()->count();/* --}}
+                {{$phoneInfoCount = $phone->phoneInfos()->count()}}
                 @if($phoneInfoCount)
                     <span>
-                        @foreach($phone->phoneInfos->first()->data as $key => $value)
-                            @if($value)
-                                <span class="badge">{{ trans('data.'.$key) }}</span>
-                                {{ mb_strimwidth($value, 0, 50, '…') }}
-                            @endif
-                        @endforeach
+                        @if(is_array($phone->phoneInfos->first()->data))
+                            @foreach($phone->phoneInfos->first()->data as $key => $value)
+                                @if($value)
+                                    <span class="badge">{{ trans('data.'.$key) }}</span>
+                                    {{ mb_strimwidth($value, 0, 50, '…') }}
+                                @endif
+                            @endforeach
+                        @else
+                            <button class="btn btn-danger">Ошибка!</button>
+                        @endif
                     </span>
                     @if($phoneInfoCount > 1)
                         <a class="more-info" href="/{{ $phone->number }}">+{{$phoneInfoCount - 1}} инф</a>
