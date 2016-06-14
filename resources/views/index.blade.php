@@ -23,7 +23,6 @@
         }
     </style>
     @include('search')
-    @include('banners/banner1')
     <h1>В базе {{ $phones->total() }} номеров и {{$phoneInfosCount}} записей</h1>
 
     <div id="hypercomments_widget"></div>
@@ -60,6 +59,24 @@
         VK.Widgets.Comments("vk_comments", {limit: 10, attach: "*"}, "index");
     </script>
 
+    <div class="panel panel-default">
+        <div class="panel-heading">Реклама</div>
+        <div class="panel-body">
+            @include('banners/adapt')
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">Реклама</div>
+        <div class="panel-body">
+            @include('banners/adapt')
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">Реклама</div>
+        <div class="panel-body">
+            @include('banners/adapt')
+        </div>
+    </div>
     <ul class="no-style">
         @foreach($phones as $phone)
             <li style="margin-bottom: 6px;">
